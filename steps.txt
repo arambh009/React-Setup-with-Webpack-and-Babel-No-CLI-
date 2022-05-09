@@ -1,0 +1,57 @@
+npm init          //creates package.json
+install react react-dom  //needed in webapp
+npm i --save-dev webpack webpack-dev-server webpack-cli //installs webpack and helps to run cli command
+npm i --save-dev babel-core babel-loader babel-preset-env babel-preset-react html-webpack-plugin
+// babel-core is core transpiler, babel-loader to compile react's JSX,babel-preset-env to compile es6 and beyond,html-webpack-plugin generates our build html file for publishing
+
+created webpack.config.js
+
+created index.js in  'src' folder
+
+created index.html in  'src' folder
+
+create .babelrc to specify our babel presets
+
+add scripts to package.json to run webpack dev server and one to build out our project in dist folder by replacing:-
+
+"test": "echo \"Error: no test specified\" && exit 1"
+
+with:-
+
+"start":"webpack-dev-server --mode development --open --hot"
+"build":"webpack --mode production"
+
+in "scripts" of package.json
+
+npm start
+//output was not shown and error was thrown:-
+ERROR in ./src/index.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: C:\Users\aramb\.vscode\Web dev\React and webpack\src\index.js: Support for the experimental syntax 'jsx' isn't currently enabled 
+// to resove(it just resolved) i did:-
+
+npm install @babel/core @babel/preset-env 
+
+npm i -D @babel/core @babel/preset-env
+
+
+//changed babelrc from:-
+{
+  "presets": ["env", "react"]
+}
+
+to:-
+{
+   
+    "presets": [
+        "@babel/preset-env","@babel/preset-react"
+      ]
+}
+
+//HOLA it WORKED!!!!!!!
+
+//stackoverflow links used:-
+to use
+https://stackoverflow.com/questions/56098779/how-to-fix-module-build-failed-from-node-modules-babel-loader-lib-index-js
+
+https://stackoverflow.com/questions/49182862/preset-files-are-not-allowed-to-export-objects
